@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ALDERVANE — Design System
+   A client-acquisition system for modern law firms.
+   Editorial: ivory paper · deep navy · hairline rules · brass.
+   Rebrand by editing the tokens below.
+   ============================================================ */
+
+:root {
+  /* Paper */
+  --paper: #f7f4ed;
+  --card: #fffdf9;
+  --navy: #12283a;
+  --navy-deep: #0c1b29;
+  --navy-raise: #1a344a;
+
+  /* Ink */
+  --ink: #1b1a17;
+  --ink-2: rgba(27, 26, 23, 0.66);
+  --ink-3: rgba(27, 26, 23, 0.42);
+  --paper-ink-2: rgba(247, 244, 237, 0.68);
+  --paper-ink-3: rgba(247, 244, 237, 0.42);
+
+  /* Lines */
+  --hairline: rgba(27, 26, 23, 0.14);
+  --hairline-strong: rgba(27, 26, 23, 0.28);
+  --line-paper: rgba(247, 244, 237, 0.16);
+
+  /* Accent */
+  --brass: #96743b;
+  --brass-hover: #7e6030;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-raise: var(--navy-raise);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-paper-ink-2: var(--paper-ink-2);
+  --color-paper-ink-3: var(--paper-ink-3);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-line-paper: var(--line-paper);
+  --color-brass: var(--brass);
+  --color-brass-hover: var(--brass-hover);
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 55s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--navy);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Editorial texture */
+.paper-grain {
+  background-image: radial-gradient(rgba(27, 26, 23, 0.035) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.navy-weave {
+  background-image:
+    linear-gradient(rgba(247, 244, 237, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 244, 237, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+  mask-image: linear-gradient(to bottom, black 60%, transparent);
+}
+
+.marquee-track:hover .marquee-inner {
+  animation-play-state: paused;
+}
+
+/* Drop cap for articles */
+.dropcap::first-letter {
+  float: left;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 3.6em;
+  line-height: 0.85;
+  padding-right: 0.12em;
+  padding-top: 0.05em;
+  color: var(--navy);
+  font-weight: 600;
+}
